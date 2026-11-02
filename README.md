@@ -37,12 +37,20 @@ The STORMBREAKERS web platform is constructed around a modern, high-octane dark 
    - **Creativity**: Defiant imagination, unboxed thinking, and bold design.
    - **Innovation**: Frontier engineering, rapid prototyping, and future tech.
    - **Determination**: Unyielding resolve, grit, tenacity, and zero excuses.
-5. **The Squad (Team Roster)**:
+5. **The Squad (The 9 Stormbreakers Roster)**:
+   - **Kalyani**: Team Leader & Principal Strategist (`#SB-01` // Callsign: `VORTEX`)
+   - **Yadu**: Vice Captain & Tactical Operations Lead (`#SB-02` // Callsign: `TITAN`)
+   - **Irin**: Creative Director & Experience Architect (`#SB-03` // Callsign: `NOVA`)
+   - **John**: Principal Systems & Core Engineer (`#SB-04` // Callsign: `CIPHER`)
+   - **Aditya**: AI Systems & Frontier Tech Specialist (`#SB-05` // Callsign: `SYNAPSE`)
+   - **Donal**: Cloud Infrastructure & Security Lead (`#SB-06` // Callsign: `AEGIS`)
+   - **Dheeraj**: Innovation & Rapid Prototyping Engineer (`#SB-07` // Callsign: `ZEPHYR`)
+   - **Madhav**: Product Strategist & Solution Architect (`#SB-08` // Callsign: `VECTOR`)
+   - **Shifana**: Visual Systems & Interface Designer (`#SB-09` // Callsign: `ECHO`)
    - Interactive role filters: *All Breakers, Leadership, Engineering, Creative & UX*.
    - Stylized cybernetic avatar representations with glowing power rings.
    - Member cards with callsigns, specialties, signature quotes, and skill chips.
    - **Interactive Dossier Modal**: Clicking *"View Dossier"* opens an expanded tactical profile with full operational history, tactical attributes, and signature doctrine.
-   - Open position invitation card: *"Next Stormbreaker — Future Legend"*.
 6. **Tactical Arsenal (Capabilities)**:
    - Immersive Web Experiences, Full-Spectrum Engineering, Radical Product Design, and Strategic Velocity.
 7. **Stormbreaker Manifesto**:

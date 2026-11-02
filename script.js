@@ -512,50 +512,86 @@ function initSquadFilter() {
    7. INTERACTIVE DOSSIER MODAL
    ========================================================================== */
 const memberDossiers = {
-  alex: {
-    name: 'Alex "Vortex" Vance',
-    role: 'Team Captain & Lead Strategist',
+  kalyani: {
+    name: 'Kalyani',
+    role: 'Team Leader & Principal Strategist',
     callsign: 'VORTEX // SB-01',
-    bio: 'Pioneering strategist who transforms high-ambiguity objectives into razor-sharp roadmap execution. With over a decade of systems architecture mastery, Alex ensures the team strikes with singular focus and relentless momentum.',
-    coreWeapon: 'Distributed Systems & Strategic Synthesis',
-    stats: { velocity: '99%', resolve: '100%', leadership: '98%' },
-    quote: '"Order is not given by circumstance; it is engineered through resolve."'
+    bio: 'Commanding leader of STORMBREAKERS, orchestrating high-stakes vision and technical synthesis. With decisive execution and unshakable clarity under pressure, Kalyani aligns the squad to conquer complex frontiers and shatter standard benchmarks.',
+    coreWeapon: 'Strategic Synthesis & High-Velocity Command',
+    stats: { leadership: '100%', strategicVision: '99%', resolve: '100%' },
+    quote: '"Lead through the storm; set the benchmark for legends."'
   },
-  elena: {
-    name: 'Elena "Nova" Chen',
-    role: 'Creative Director & UX Architect',
-    callsign: 'NOVA // SB-02',
-    bio: 'Visionary artist at the intersection of futuristic human interface design and generative aesthetics. Elena crafts immersive visual worlds that captivate audiences and elevate digital interaction into high art.',
+  yadu: {
+    name: 'Yadu',
+    role: 'Vice Captain & Tactical Operations Lead',
+    callsign: 'TITAN // SB-02',
+    bio: 'Second-in-command steering cross-functional execution and tactical velocity. Yadu ensures seamless synergy across engineering and design wings, turning strategic directives into unstoppable, battle-tested momentum.',
+    coreWeapon: 'Operational Command & Tactical Synchronization',
+    stats: { execution: '99%', tacticalAgility: '98%', resilience: '100%' },
+    quote: '"Precision under pressure; momentum engineered without compromise."'
+  },
+  irin: {
+    name: 'Irin',
+    role: 'Creative Director & Experience Architect',
+    callsign: 'NOVA // SB-03',
+    bio: 'Visionary mind behind the team’s aesthetic architecture and brand presence. Irin sculpts evocative digital dimensions, blending futuristic motion mechanics with emotional resonance to turn interfaces into living art.',
     coreWeapon: 'Spatial UI & Motion Mechanics',
-    stats: { vision: '99%', creativity: '100%', precision: '96%' },
-    quote: '"When functionality and awe meet, magic becomes standard."'
+    stats: { vision: '99%', creativity: '100%', precision: '97%' },
+    quote: '"Aesthetic perfection is not decorative; it is emotional gravity."'
   },
-  marcus: {
-    name: 'Marcus "Cipher" Thorne',
-    role: 'Principal Systems & AI Engineer',
-    callsign: 'CIPHER // SB-03',
-    bio: 'Algorithmic architect specializing in ultra-low latency frameworks, intelligent systems, and scalable cloud engines. Marcus guarantees that STORMBREAKERS products perform flawlessly under maximum tempest pressure.',
-    coreWeapon: 'Distributed Cloud & Neural Architectures',
-    stats: { efficiency: '99%', uptime: '99.9%', complexity: '100%' },
-    quote: '"Complexity is just simplicity waiting to be discovered."'
+  john: {
+    name: 'John',
+    role: 'Principal Systems & Core Engineer',
+    callsign: 'CIPHER // SB-04',
+    bio: 'Foundational systems architect and full-stack engineer. John crafts the bedrock upon which STORMBREAKERS constructs mission-critical software, engineering rock-solid distributed pipelines with uncompromising performance.',
+    coreWeapon: 'High-Performance Distributed Engines',
+    stats: { architecture: '100%', scalability: '99%', codeVelocity: '98%' },
+    quote: '"Rock-solid foundations turn wild ambitions into enduring reality."'
   },
-  sophia: {
-    name: 'Sophia "Zephyr" Ramos',
-    role: 'Innovation & Rapid Prototyping Lead',
-    callsign: 'ZEPHYR // SB-04',
-    bio: 'Fearless experimenter who turns theoretical concepts into testable, working reality within hours. Specializing in emerging technologies and creative computing, Sophia ensures the squad is always two steps ahead of the curve.',
-    coreWeapon: 'Creative Code & Rapid Deployment',
-    stats: { agility: '100%', curiosity: '98%', speed: '99%' },
-    quote: '"The fastest path to certainty is fearless iteration."'
+  aditya: {
+    name: 'Aditya',
+    role: 'AI Systems & Frontier Tech Specialist',
+    callsign: 'SYNAPSE // SB-05',
+    bio: 'Deep tech researcher and algorithmic engineer driving the squad’s artificial intelligence capabilities. Aditya integrates next-gen neural models and automated reasoning systems to keep the team ahead of the technology curve.',
+    coreWeapon: 'Neural Network Frameworks & Algorithmic Intelligence',
+    stats: { aiModeling: '99%', algorithmicDepth: '98%', innovation: '99%' },
+    quote: '"Push the algorithm beyond tomorrow; redefine intelligence."'
   },
-  kai: {
-    name: 'Kai "Pulse" Nakamura',
-    role: 'Operations & Tactical Growth Lead',
-    callsign: 'PULSE // SB-05',
-    bio: 'Master of operational rhythm, ecosystem scaling, and strategic alliances. Kai synchronizes all internal moving parts and translates technological breakthroughs into global real-world resonance.',
-    coreWeapon: 'Ecosystem Scaling & Strategic Execution',
-    stats: { velocity: '97%', alignment: '99%', impact: '98%' },
-    quote: '"A great team is an orchestra where every note resonates."'
+  donal: {
+    name: 'Donal',
+    role: 'Cloud Infrastructure & Security Lead',
+    callsign: 'AEGIS // SB-06',
+    bio: 'Guardian of cloud resilience, security posture, and zero-downtime scalability. Donal engineers impenetrable environments and continuous delivery fabrics that operate flawlessly under tempestuous workloads.',
+    coreWeapon: 'Zero-Trust Infrastructure & Scaled DevOps',
+    stats: { securityPosture: '100%', cloudScale: '99%', uptime: '99.9%' },
+    quote: '"Impenetrable defenses with infinite scalability."'
+  },
+  dheeraj: {
+    name: 'Dheeraj',
+    role: 'Innovation & Rapid Prototyping Engineer',
+    callsign: 'ZEPHYR // SB-07',
+    bio: 'High-speed builder who translates audacious ideas into working interactive realities in record time. Specializing in emerging frameworks, creative coding, and experimental prototypes, Dheeraj eliminates friction from vision to code.',
+    coreWeapon: 'Rapid Prototyping & Creative Computation',
+    stats: { buildSpeed: '100%', curiosity: '99%', experimentalAgility: '98%' },
+    quote: '"Fail fast, learn faster, engineer what never existed."'
+  },
+  madhav: {
+    name: 'Madhav',
+    role: 'Product Strategist & Solution Architect',
+    callsign: 'VECTOR // SB-08',
+    bio: 'Strategic thinker operating at the nexus of user psychology, product ergonomics, and system viability. Madhav distills chaotic problem spaces into focused roadmaps with high-leverage business and user impact.',
+    coreWeapon: 'Product Discovery & Ergonomic Roadmapping',
+    stats: { strategicImpact: '98%', marketInsight: '99%', userFocus: '97%' },
+    quote: '"Insight uncovers the path; execution seals the victory."'
+  },
+  shifana: {
+    name: 'Shifana',
+    role: 'Visual Systems & Interface Designer',
+    callsign: 'ECHO // SB-09',
+    bio: 'Master of visual elegance, micro-interaction design, and design system governance. Shifana ensures every digital touchpoint feels tactile, responsive, and visually harmonious across all viewports.',
+    coreWeapon: 'Visual Design Systems & Kinetic Micro-Interactions',
+    stats: { designPrecision: '100%', visualElegance: '99%', interactionFlow: '98%' },
+    quote: '"Every pixel has purpose; every interaction tells a story."'
   }
 };
 
