@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STORMBREAKERS | Break Limits - Create Legends</title>
+  <meta name="description" content="STORMBREAKERS is an elite team driven by teamwork, creativity, innovation, and determination. Break Limits - Create Legends.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  <!-- Interactive Lightning & Particle Canvas -->
+  <canvas id="storm-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient background glow layers -->
+  <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+  <div class="ambient-glow glow-purple" aria-hidden="true"></div>
+  <div class="ambient-grid" aria-hidden="true"></div>
+
+  <!-- Audio Toggle Feedback Notification -->
+  <div id="audio-toast" class="audio-toast" role="status" aria-live="polite">Audio Effects Enabled</div>
+
+  <!-- NAVIGATION -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo" aria-label="STORMBREAKERS Home">
+        <div class="logo-symbol">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="lightning-svg">
+            <defs>
+              <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f0ff" />
+                <stop offset="50%" stop-color="#7000ff" />
+                <stop offset="100%" stop-color="#d946ef" />
+              </linearGradient>
+              <filter id="logo-glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            <polygon points="22,2 8,22 19,22 17,38 32,16 21,16" fill="url(#logo-grad)" filter="url(#logo-glow)"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">STORMBREAKERS</span>
+          <span class="logo-tag">BREAK LIMITS</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-links" id="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#pillars" class="nav-link">Pillars</a>
+        <a href="#squad" class="nav-link">Squad</a>
+        <a href="#arsenal" class="nav-link">Arsenal</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Utility Actions -->
+      <div class="nav-actions">
+        <!-- Sci-Fi Audio FX Toggle (Web Audio API Synthesized) -->
+        <button id="sound-toggle" class="sound-toggle-btn" aria-label="Toggle Sound Effects" title="Toggle Futuristic Sound FX">
+          <span class="sound-icon-wrapper">
+            <svg class="sound-icon sound-on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg class="sound-icon sound-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          </span>
+          <span class="sound-label">FX: OFF</span>
+        </button>
+
+        <a href="#contact" class="btn btn-outline-glow nav-cta">Join Mission</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer-content">
+      <nav class="mobile-nav-links">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#pillars" class="mobile-nav-link">Core Pillars</a>
+        <a href="#squad" class="mobile-nav-link">The Squad</a>
+        <a href="#arsenal" class="mobile-nav-link">Arsenal</a>
+        <a href="#contact" class="mobile-nav-link">Transmission</a>
+      </nav>
+      <div class="mobile-drawer-footer">
+        <a href="#contact" class="btn btn-electric w-full">Join The Storm</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        
+        <!-- Live Status Pill -->
+        <div class="hero-badge reveal-fade">
+          <span class="pulse-dot"></span>
+          <span class="badge-text">STATUS: ACTIVE &bull; MISSION READY</span>
+        </div>
+
+        <!-- Primary Impact Title -->
+        <h1 class="hero-title reveal-fade" data-delay="100">
+          <span class="hero-title-text" data-text="STORMBREAKERS">STORMBREAKERS</span>
+        </h1>
+
+        <!-- Iconic Motto Display -->
+        <div class="motto-wrapper reveal-fade" data-delay="200">
+          <div class="motto-bracket left">&lt;</div>
+          <p class="hero-motto">Break Limits &mdash; Create Legends</p>
+          <div class="motto-bracket right">&gt;</div>
+        </div>
+
+        <!-- Powerful Introduction -->
+        <p class="hero-description reveal-fade" data-delay="300">
+          A high-impact collective engineered to shatter the status quo. Powered by fearless 
+          <span class="highlight-blue">teamwork</span>, unconstrained <span class="highlight-purple">creativity</span>, 
+          continuous <span class="highlight-blue">innovation</span>, and bulletproof <span class="highlight-purple">determination</span>, 
+          we don't wait for calm waters&mdash;we master the tempest.
+        </p>
+
+        <!-- CTAs -->
+        <div class="hero-actions reveal-fade" data-delay="400">
+          <a href="#squad" class="btn btn-electric">
+            <span>Explore The Squad</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#pillars" class="btn btn-glass">
+            <span>Our Core Ethos</span>
+            <svg class="btn-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Hero Stats / Metrics Row -->
+        <div class="hero-metrics-grid reveal-fade" data-delay="500">
+          <div class="metric-card">
+            <span class="metric-value" data-target="4">04</span>
+            <span class="metric-label">Power Pillars</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value" data-target="100">100%</span>
+            <span class="metric-label">Dedication</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">&infin;</span>
+            <span class="metric-label">Creative Horizon</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">01</span>
+            <span class="metric-label">United Purpose</span>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-down-hint">
+          <a href="#about" aria-label="Scroll down to About section">
+            <div class="mouse-icon">
+              <div class="wheel"></div>
+            </div>
+            <span class="scroll-text">DISCOVER</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE BANNER -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item"><span class="m-bolt">&#9889;</span> BREAK LIMITS</span>
+        <span class="marquee-item"><span class="m-dot">&bull;</span> CREATE LEGENDS</span>
+        <span class="marquee-item"><span class="m-bolt">&#9889;</span> RELENTLESS INNOVATION</span>
+        <span class="marquee-item"><span class="m-dot">&bull;</span> RADICAL CREATIVITY</span>
+        <span class="marquee-item"><span class="m-bolt">&#9889;</span> UNCONQUERABLE UNITY</span>
+        <span class="marquee-item"><span class="m-dot">&bull;</span> PURE DETERMINATION</span>
+        <!-- Duplicated for seamless infinite scroll -->
+        <span class="marquee-item"><span class="m-bolt">&#9889;</span> BREAK LIMITS</span>
+        <span class="marquee-item"><span class="m-dot">&bull;</span> CREATE LEGENDS</span>
+        <span class="marquee-item"><span class="m-bolt">&#9889;</span> RELENTLESS INNOVATION</span>
+        <span class="marquee-item"><span class="m-dot">&bull;</span> RADICAL CREATIVITY</span>
+        <span class="marquee-item"><span class="m-bolt">&#9889;</span> UNCONQUERABLE UNITY</span>
+        <span class="marquee-item"><span class="m-dot">&bull;</span> PURE DETERMINATION</span>
+      </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-badge reveal-fade">
+          <span class="section-tag">[ 01 // IDENTITY ]</span>
+        </div>
+        <h2 class="section-title reveal-fade" data-delay="100">
+          WHO ARE THE <span class="gradient-text">STORMBREAKERS</span>?
+        </h2>
+        
+        <div class="about-grid">
+          <div class="about-narrative reveal-fade" data-delay="200">
+            <p class="lead-text">
+              We are an elite squad formed by the convergence of visionary minds, technical mastery, and an insatiable hunger for excellence.
+            </p>
+            <p class="body-text">
+              Storms are naturally chaotic, unpredictable, and formidable. Most seek shelter. <strong>STORMBREAKERS</strong> step directly into the gale. We channel raw energy into focused momentum, using adversity as our supreme accelerator.
+            </p>
+            <p class="body-text">
+              Whether architecting groundbreaking solutions, crafting transformative digital artifacts, or pioneering untested frontiers, our mission remains non-negotiable: <em>Break every perceived ceiling and carve out work that stands the test of time.</em>
+            </p>
+
+            <div class="identity-highlights">
+              <div class="identity-badge">
+                <span class="id-icon">&#9650;</span>
+                <div>
+                  <strong>High-Octane Synergy</strong>
+                  <p>Fusing distinct perspectives into one sharp edge.</p>
+                </div>
+              </div>
+              <div class="identity-badge">
+                <span class="id-icon">&#9670;</span>
+                <div>
+                  <strong>Zero Compromise on Quality</strong>
+                  <p>World-class craft baked into every release.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Futuristic Visual Emblem / Holographic Card -->
+          <div class="about-visual reveal-fade" data-delay="300">
+            <div class="hologram-card tilt-card" data-tilt>
+              <div class="hologram-glow"></div>
+              <div class="hologram-inner">
+                <div class="holo-header">
+                  <span class="holo-code">ID // STRM-001</span>
+                  <span class="holo-status">SYSTEMS ONLINE</span>
+                </div>
+                <div class="holo-sigil">
+                  <div class="sigil-ring ring-1"></div>
+                  <div class="sigil-ring ring-2"></div>
+                  <div class="sigil-ring ring-3"></div>
+                  <div class="sigil-core">
+                    <svg viewBox="0 0 48 48" class="holo-lightning">
+                      <polygon points="26,4 12,26 23,26 20,44 36,20 25,20" fill="url(#logo-grad)"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="holo-footer">
+                  <div class="holo-motto-label">OPERATIONAL MOTTO</div>
+                  <div class="holo-motto">"Break Limits - Create Legends"</div>
+                  <div class="holo-stats-bar">
+                    <div class="bar-fill"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE PILLARS SECTION -->
+    <section class="section pillars-section" id="pillars">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge reveal-fade">
+            <span class="section-tag">[ 02 // FOUNDATIONAL PILLARS ]</span>
+          </div>
+          <h2 class="section-title reveal-fade" data-delay="100">
+            THE FOUR FORCES OF <span class="gradient-text">OUR ENGINE</span>
+          </h2>
+          <p class="section-subtitle reveal-fade" data-delay="200">
+            Our DNA is built upon four indestructible principles that steer every line of code, every pixel, and every decision we make.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <!-- Pillar 1: Teamwork -->
+          <div class="pillar-card tilt-card reveal-fade" data-delay="100" data-tilt>
+            <div class="pillar-header">
+              <div class="pillar-icon-box icon-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <span class="pillar-index">01</span>
+            </div>
+            <h3 class="pillar-name">Teamwork</h3>
+            <span class="pillar-subtitle">Unstoppable Synergy</span>
+            <p class="pillar-desc">
+              Individually sharp; collectively invincible. We eliminate silos, communicate with absolute clarity, and multiply each other's strengths to execute missions that no lone operator could conquer.
+            </p>
+            <div class="pillar-tag-list">
+              <span class="tag">Radical Trust</span>
+              <span class="tag">Shared Ownership</span>
+              <span class="tag">Unified Momentum</span>
+            </div>
+            <div class="pillar-bottom-glow blue-glow"></div>
+          </div>
+
+          <!-- Pillar 2: Creativity -->
+          <div class="pillar-card tilt-card reveal-fade" data-delay="200" data-tilt>
+            <div class="pillar-header">
+              <div class="pillar-icon-box icon-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+              </div>
+              <span class="pillar-index">02</span>
+            </div>
+            <h3 class="pillar-name">Creativity</h3>
+            <span class="pillar-subtitle">Defiant Imagination</span>
+            <p class="pillar-desc">
+              We look at familiar paradigms and envision daring alternatives. By combining bold visual artistry with unorthodox thinking, we transform abstract visions into magnetic, unforgettable reality.
+            </p>
+            <div class="pillar-tag-list">
+              <span class="tag">Unboxed Thought</span>
+              <span class="tag">Aesthetic Depth</span>
+              <span class="tag">Bold Design</span>
+            </div>
+            <div class="pillar-bottom-glow purple-glow"></div>
+          </div>
+
+          <!-- Pillar 3: Innovation -->
+          <div class="pillar-card tilt-card reveal-fade" data-delay="300" data-tilt>
+            <div class="pillar-header">
+              <div class="pillar-icon-box icon-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <span class="pillar-index">03</span>
+            </div>
+            <h3 class="pillar-name">Innovation</h3>
+            <span class="pillar-subtitle">Frontier Engineering</span>
+            <p class="pillar-desc">
+              We live on the bleeding edge. Embracing cutting-edge architectures, intelligent automation, and future-ready frameworks, we craft tools and solutions that define tomorrow's benchmarks today.
+            </p>
+            <div class="pillar-tag-list">
+              <span class="tag">Next-Gen Tech</span>
+              <span class="tag">Rapid Iteration</span>
+              <span class="tag">Speed & Scale</span>
+            </div>
+            <div class="pillar-bottom-glow blue-glow"></div>
+          </div>
+
+          <!-- Pillar 4: Determination -->
+          <div class="pillar-card tilt-card reveal-fade" data-delay="400" data-tilt>
+            <div class="pillar-header">
+              <div class="pillar-icon-box icon-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <span class="pillar-index">04</span>
+            </div>
+            <h3 class="pillar-name">Determination</h3>
+            <span class="pillar-subtitle">Unyielding Resolve</span>
+            <p class="pillar-desc">
+              Limits are mental illusions waiting to be smashed. When challenges turn steep and pressure spikes, our resolve locks in. We persist, adapt, and push past every obstacle until the mission is won.
+            </p>
+            <div class="pillar-tag-list">
+              <span class="tag">Grit & Tenacity</span>
+              <span class="tag">Laser Focus</span>
+              <span class="tag">Zero Excuses</span>
+            </div>
+            <div class="pillar-bottom-glow purple-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SQUAD / TEAM MEMBERS SECTION -->
+    <section class="section squad-section" id="squad">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge reveal-fade">
+            <span class="section-tag">[ 03 // THE SQUAD ]</span>
+          </div>
+          <h2 class="section-title reveal-fade" data-delay="100">
+            MEET THE <span class="gradient-text">STORMBREAKERS</span>
+          </h2>
+          <p class="section-subtitle reveal-fade" data-delay="200">
+            Meet the architects, creators, and operators turning relentless drive into legendary outcomes.
+          </p>
+
+          <!-- Squad Filter Tabs -->
+          <div class="filter-bar reveal-fade" data-delay="250">
+            <button class="filter-btn active" data-filter="all">All Breakers</button>
+            <button class="filter-btn" data-filter="lead">Leadership</button>
+            <button class="filter-btn" data-filter="eng">Engineering</button>
+            <button class="filter-btn" data-filter="des">Creative & UX</button>
+          </div>
+        </div>
+
+        <!-- Squad Cards Grid -->
+        <div class="squad-grid" id="squad-grid">
+          
+          <!-- Member 1: Captain / Lead Strategist -->
+          <article class="member-card tilt-card reveal-fade" data-category="lead" data-delay="100" data-tilt>
+            <div class="card-glass-frame">
+              <div class="member-avatar-wrapper">
+                <div class="avatar-ring ring-blue"></div>
+                <div class="avatar-glow"></div>
+                <!-- Stylized Cybernetic Avatar Illustration -->
+                <div class="avatar-graphic avatar-lead">
+                  <svg viewBox="0 0 100 100" class="member-svg">
+                    <circle cx="50" cy="50" r="46" fill="#0c0d21" stroke="#00f0ff" stroke-width="2"/>
+                    <path d="M50 22 C38 22, 28 32, 28 44 C28 54, 34 62, 42 65 L42 70 L30 78 C25 82, 22 88, 22 94 L78 94 C78 88, 75 82, 70 78 L58 70 L58 65 C66 62, 72 54, 72 44 C72 32, 62 22, 50 22 Z" fill="#1e1f42"/>
+                    <polygon points="50,30 40,46 48,46 46,60 58,42 50,42" fill="#00f0ff"/>
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#7000ff" stroke-dasharray="8 6" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <span class="role-badge badge-lead">CAPTAIN</span>
+              </div>
+
+              <div class="member-info">
+                <div class="member-meta">
+                  <span class="callsign">CALLSIGN: VORTEX</span>
+                  <span class="system-id">#SB-01</span>
+                </div>
+                <h3 class="member-name">Alex Vance</h3>
+                <p class="member-role">Team Lead & Principal Strategist</p>
+                <p class="member-quote">&ldquo;Navigate the chaos; set the standard.&rdquo;</p>
+                
+                <div class="member-skills">
+                  <span class="skill-chip">System Architecture</span>
+                  <span class="skill-chip">Strategic Vision</span>
+                  <span class="skill-chip">Team Velocity</span>
+                </div>
+
+                <div class="member-footer">
+                  <div class="member-socials">
+                    <a href="#contact" class="social-icon" aria-label="Alex's GitHub" title="GitHub">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Alex's LinkedIn" title="LinkedIn">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Alex's Communications" title="Message">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </a>
+                  </div>
+                  <button class="member-dossier-btn" data-member="alex">View Dossier &rarr;</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 2: Creative Director / UX Architect -->
+          <article class="member-card tilt-card reveal-fade" data-category="des" data-delay="200" data-tilt>
+            <div class="card-glass-frame">
+              <div class="member-avatar-wrapper">
+                <div class="avatar-ring ring-purple"></div>
+                <div class="avatar-glow purple"></div>
+                <!-- Stylized Cybernetic Avatar Illustration -->
+                <div class="avatar-graphic avatar-creative">
+                  <svg viewBox="0 0 100 100" class="member-svg">
+                    <circle cx="50" cy="50" r="46" fill="#120c24" stroke="#d946ef" stroke-width="2"/>
+                    <path d="M50 22 C38 22, 28 32, 28 44 C28 54, 34 62, 42 65 L42 70 L30 78 C25 82, 22 88, 22 94 L78 94 C78 88, 75 82, 70 78 L58 70 L58 65 C66 62, 72 54, 72 44 C72 32, 62 22, 50 22 Z" fill="#291a45"/>
+                    <circle cx="50" cy="42" r="14" fill="#a855f7" opacity="0.8"/>
+                    <polygon points="50,34 54,42 62,42 56,47 58,55 50,50 42,55 44,47 38,42 46,42" fill="#ffffff"/>
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#00f0ff" stroke-dasharray="10 5" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <span class="role-badge badge-purple">CREATIVE LEAD</span>
+              </div>
+
+              <div class="member-info">
+                <div class="member-meta">
+                  <span class="callsign">CALLSIGN: NOVA</span>
+                  <span class="system-id">#SB-02</span>
+                </div>
+                <h3 class="member-name">Elena Chen</h3>
+                <p class="member-role">Creative Director & UX Architect</p>
+                <p class="member-quote">&ldquo;Form and sensation must ignite the soul.&rdquo;</p>
+                
+                <div class="member-skills">
+                  <span class="skill-chip">Futuristic UI</span>
+                  <span class="skill-chip">Motion & 3D</span>
+                  <span class="skill-chip">Design Systems</span>
+                </div>
+
+                <div class="member-footer">
+                  <div class="member-socials">
+                    <a href="#contact" class="social-icon" aria-label="Elena's Portfolio" title="Portfolio">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Elena's LinkedIn" title="LinkedIn">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Elena's Dribbble" title="Design Works">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"></path><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"></path><path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"></path></svg>
+                    </a>
+                  </div>
+                  <button class="member-dossier-btn" data-member="elena">View Dossier &rarr;</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 3: Principal Systems & AI Engineer -->
+          <article class="member-card tilt-card reveal-fade" data-category="eng" data-delay="300" data-tilt>
+            <div class="card-glass-frame">
+              <div class="member-avatar-wrapper">
+                <div class="avatar-ring ring-blue"></div>
+                <div class="avatar-glow"></div>
+                <div class="avatar-graphic avatar-eng">
+                  <svg viewBox="0 0 100 100" class="member-svg">
+                    <circle cx="50" cy="50" r="46" fill="#091224" stroke="#00f0ff" stroke-width="2"/>
+                    <path d="M50 22 C38 22, 28 32, 28 44 C28 54, 34 62, 42 65 L42 70 L30 78 C25 82, 22 88, 22 94 L78 94 C78 88, 75 82, 70 78 L58 70 L58 65 C66 62, 72 54, 72 44 C72 32, 62 22, 50 22 Z" fill="#152647"/>
+                    <rect x="42" y="36" width="16" height="16" rx="3" fill="#00f0ff"/>
+                    <line x1="38" y1="44" x2="42" y2="44" stroke="#00f0ff" stroke-width="2"/>
+                    <line x1="58" y1="44" x2="62" y2="44" stroke="#00f0ff" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#7000ff" stroke-dasharray="6 4" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <span class="role-badge badge-blue">SYSTEMS ARCHITECT</span>
+              </div>
+
+              <div class="member-info">
+                <div class="member-meta">
+                  <span class="callsign">CALLSIGN: CIPHER</span>
+                  <span class="system-id">#SB-03</span>
+                </div>
+                <h3 class="member-name">Marcus Thorne</h3>
+                <p class="member-role">Principal Systems & AI Engineer</p>
+                <p class="member-quote">&ldquo;Infinite scalability with zero compromise.&rdquo;</p>
+                
+                <div class="member-skills">
+                  <span class="skill-chip">Neural Networks</span>
+                  <span class="skill-chip">Distributed Cloud</span>
+                  <span class="skill-chip">Low-Latency Code</span>
+                </div>
+
+                <div class="member-footer">
+                  <div class="member-socials">
+                    <a href="#contact" class="social-icon" aria-label="Marcus's GitHub" title="GitHub">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Marcus's LinkedIn" title="LinkedIn">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Marcus's Terminal" title="Terminal">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    </a>
+                  </div>
+                  <button class="member-dossier-btn" data-member="marcus">View Dossier &rarr;</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 4: Innovation & Rapid Prototyper -->
+          <article class="member-card tilt-card reveal-fade" data-category="eng" data-delay="400" data-tilt>
+            <div class="card-glass-frame">
+              <div class="member-avatar-wrapper">
+                <div class="avatar-ring ring-purple"></div>
+                <div class="avatar-glow purple"></div>
+                <div class="avatar-graphic avatar-proto">
+                  <svg viewBox="0 0 100 100" class="member-svg">
+                    <circle cx="50" cy="50" r="46" fill="#140a24" stroke="#a855f7" stroke-width="2"/>
+                    <path d="M50 22 C38 22, 28 32, 28 44 C28 54, 34 62, 42 65 L42 70 L30 78 C25 82, 22 88, 22 94 L78 94 C78 88, 75 82, 70 78 L58 70 L58 65 C66 62, 72 54, 72 44 C72 32, 62 22, 50 22 Z" fill="#2a164a"/>
+                    <circle cx="44" cy="42" r="4" fill="#00f0ff"/>
+                    <circle cx="56" cy="42" r="4" fill="#00f0ff"/>
+                    <path d="M42 52 Q50 58 58 52" stroke="#00f0ff" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#d946ef" stroke-dasharray="12 4" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <span class="role-badge badge-purple">PROTOTYPE LEAD</span>
+              </div>
+
+              <div class="member-info">
+                <div class="member-meta">
+                  <span class="callsign">CALLSIGN: ZEPHYR</span>
+                  <span class="system-id">#SB-04</span>
+                </div>
+                <h3 class="member-name">Sophia Ramos</h3>
+                <p class="member-role">Innovation & Rapid Prototyping</p>
+                <p class="member-quote">&ldquo;Test fast, break boundaries, build what endures.&rdquo;</p>
+                
+                <div class="member-skills">
+                  <span class="skill-chip">Creative Coding</span>
+                  <span class="skill-chip">Emerging Tech</span>
+                  <span class="skill-chip">Rapid Deployment</span>
+                </div>
+
+                <div class="member-footer">
+                  <div class="member-socials">
+                    <a href="#contact" class="social-icon" aria-label="Sophia's GitHub" title="GitHub">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Sophia's Twitter/X" title="Twitter/X">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Sophia's Portfolio" title="Portfolio">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </a>
+                  </div>
+                  <button class="member-dossier-btn" data-member="sophia">View Dossier &rarr;</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 5: Tactical Operations & Growth -->
+          <article class="member-card tilt-card reveal-fade" data-category="lead" data-delay="500" data-tilt>
+            <div class="card-glass-frame">
+              <div class="member-avatar-wrapper">
+                <div class="avatar-ring ring-blue"></div>
+                <div class="avatar-glow"></div>
+                <div class="avatar-graphic avatar-ops">
+                  <svg viewBox="0 0 100 100" class="member-svg">
+                    <circle cx="50" cy="50" r="46" fill="#0c1328" stroke="#00f0ff" stroke-width="2"/>
+                    <path d="M50 22 C38 22, 28 32, 28 44 C28 54, 34 62, 42 65 L42 70 L30 78 C25 82, 22 88, 22 94 L78 94 C78 88, 75 82, 70 78 L58 70 L58 65 C66 62, 72 54, 72 44 C72 32, 62 22, 50 22 Z" fill="#1b2850"/>
+                    <polygon points="50,32 55,42 66,42 57,48 61,58 50,52 39,58 43,48 34,42 45,42" fill="#00f0ff"/>
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#7000ff" stroke-dasharray="14 6" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <span class="role-badge badge-lead">OPERATIONS</span>
+              </div>
+
+              <div class="member-info">
+                <div class="member-meta">
+                  <span class="callsign">CALLSIGN: PULSE</span>
+                  <span class="system-id">#SB-05</span>
+                </div>
+                <h3 class="member-name">Kai Nakamura</h3>
+                <p class="member-role">Operations & Tactical Growth</p>
+                <p class="member-quote">&ldquo;Momentum is engineered, not accidental.&rdquo;</p>
+                
+                <div class="member-skills">
+                  <span class="skill-chip">Execution Velocity</span>
+                  <span class="skill-chip">Ecosystem Growth</span>
+                  <span class="skill-chip">Product Delivery</span>
+                </div>
+
+                <div class="member-footer">
+                  <div class="member-socials">
+                    <a href="#contact" class="social-icon" aria-label="Kai's LinkedIn" title="LinkedIn">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#contact" class="social-icon" aria-label="Kai's Communications" title="Message">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </a>
+                  </div>
+                  <button class="member-dossier-btn" data-member="kai">View Dossier &rarr;</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 6: "The Next Stormbreaker" (Interactive Invitation Card) -->
+          <article class="member-card tilt-card member-join-card reveal-fade" data-category="lead eng des" data-delay="600" data-tilt>
+            <div class="card-glass-frame join-frame">
+              <div class="join-glow"></div>
+              <div class="member-avatar-wrapper">
+                <div class="avatar-ring ring-neon-pulse"></div>
+                <div class="avatar-graphic avatar-future">
+                  <div class="plus-icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="pulsing-plus">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </div>
+                </div>
+                <span class="role-badge badge-join">OPEN POSITION</span>
+              </div>
+
+              <div class="member-info">
+                <div class="member-meta">
+                  <span class="callsign">CALLSIGN: YOU</span>
+                  <span class="system-id">#SB-NEXT</span>
+                </div>
+                <h3 class="member-name">Next Stormbreaker</h3>
+                <p class="member-role">Future Legend & Co-Creator</p>
+                <p class="member-quote">&ldquo;Do you have the fire to break limits?&rdquo;</p>
+                
+                <div class="member-skills">
+                  <span class="skill-chip">Bold Curiosity</span>
+                  <span class="skill-chip">Relentless Drive</span>
+                  <span class="skill-chip">Mastery</span>
+                </div>
+
+                <div class="member-footer justify-center">
+                  <a href="#contact" class="btn btn-electric btn-sm w-full">Join The Ranks</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ARSENAL / CAPABILITIES SECTION -->
+    <section class="section arsenal-section" id="arsenal">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge reveal-fade">
+            <span class="section-tag">[ 04 // CAPABILITIES ]</span>
+          </div>
+          <h2 class="section-title reveal-fade" data-delay="100">
+            THE TACTICAL <span class="gradient-text">ARSENAL</span>
+          </h2>
+          <p class="section-subtitle reveal-fade" data-delay="200">
+            How we translate unstoppable energy into high-caliber digital reality.
+          </p>
+        </div>
+
+        <div class="arsenal-grid">
+          <div class="arsenal-item reveal-fade" data-delay="100">
+            <div class="arsenal-badge">01</div>
+            <div class="arsenal-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h4>Immersive Web Experiences</h4>
+            <p>Modern architectures, reactive visual design, 3D Canvas interfaces, and ultra-fluid micro-interactions that leave indelible impressions.</p>
+          </div>
+
+          <div class="arsenal-item reveal-fade" data-delay="200">
+            <div class="arsenal-badge">02</div>
+            <div class="arsenal-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <h4>Full-Spectrum Engineering</h4>
+            <p>Scalable cloud microservices, intelligent backend systems, and rock-solid reliability engineered to withstand any surge.</p>
+          </div>
+
+          <div class="arsenal-item reveal-fade" data-delay="300">
+            <div class="arsenal-badge">03</div>
+            <div class="arsenal-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+            </div>
+            <h4>Radical Product Design</h4>
+            <p>User experiences sculpted with psychological precision. We merge emotional resonance with intuitive, frictionless functionality.</p>
+          </div>
+
+          <div class="arsenal-item reveal-fade" data-delay="400">
+            <div class="arsenal-badge">04</div>
+            <div class="arsenal-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 20V10"></path>
+                <path d="M12 20V4"></path>
+                <path d="M6 20v-6"></path>
+              </svg>
+            </div>
+            <h4>Strategic Velocity</h4>
+            <p>Iterative momentum that transforms raw complexity into high-impact deliverables at unprecedented speed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO / STATEMENT BANNER -->
+    <section class="manifesto-section">
+      <div class="container text-center">
+        <div class="manifesto-card reveal-fade">
+          <div class="manifesto-backdrop"></div>
+          <div class="manifesto-content">
+            <span class="manifesto-tag">&#9889; THE STORMBREAKER MANIFESTO</span>
+            <blockquote class="manifesto-quote">
+              &ldquo;We don&rsquo;t seek an easy path. We demand the storms that force us to evolve, because beyond the limit of comfort lies the birthplace of legends.&rdquo;
+            </blockquote>
+            <cite class="manifesto-author">&mdash; STORMBREAKERS COMMAND</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / MISSION CONTROL SECTION -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card-wrapper reveal-fade">
+          <div class="contact-grid">
+            
+            <!-- Contact Left: Transmission Info -->
+            <div class="contact-info">
+              <div class="section-badge">
+                <span class="section-tag">[ 05 // TRANSMISSION ]</span>
+              </div>
+              <h2 class="contact-title">
+                READY TO <span class="gradient-text">JOIN THE TEMPEST?</span>
+              </h2>
+              <p class="contact-desc">
+                Have a bold idea, a partnership opportunity, or want to explore collaboration? Signal our command console and we will respond at lightning velocity.
+              </p>
+
+              <div class="transmission-points">
+                <div class="t-point">
+                  <div class="t-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  </div>
+                  <div>
+                    <span class="t-label">ENCRYPTED COMM</span>
+                    <a href="mailto:contact@stormbreakers.team" class="t-value">contact@stormbreakers.team</a>
+                  </div>
+                </div>
+
+                <div class="t-point">
+                  <div class="t-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                  </div>
+                  <div>
+                    <span class="t-label">COORDINATES</span>
+                    <span class="t-value">Global Remote &bull; Cyberspace Node 01</span>
+                  </div>
+                </div>
+
+                <div class="t-point">
+                  <div class="t-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </div>
+                  <div>
+                    <span class="t-label">STATUS</span>
+                    <span class="t-value text-accent-green">Transceivers Online &bull; Accepting Transmissions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Right: Futuristic Form -->
+            <div class="contact-form-container">
+              <form id="contact-form" class="cyber-form" novalidate>
+                <div class="form-group">
+                  <label for="sender-name">Operator Name / Handle</label>
+                  <div class="input-glow-wrapper">
+                    <input type="text" id="sender-name" name="name" required placeholder="e.g. Commander Nova" autocomplete="name">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="sender-email">Transmission Frequency (Email)</label>
+                  <div class="input-glow-wrapper">
+                    <input type="email" id="sender-email" name="email" required placeholder="name@domain.com" autocomplete="email">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="transmission-type">Mission Type</label>
+                  <div class="input-glow-wrapper select-wrapper">
+                    <select id="transmission-type" name="type">
+                      <option value="collab">Squad Collaboration / Partnership</option>
+                      <option value="join">Recruitment / Join The Ranks</option>
+                      <option value="project">New Breakthrough Project</option>
+                      <option value="other">General Transmission</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="sender-message">Message Transmission</label>
+                  <div class="input-glow-wrapper">
+                    <textarea id="sender-message" name="message" rows="4" required placeholder="Brief us on your vision, requirements, or inquiry..."></textarea>
+                  </div>
+                </div>
+
+                <button type="submit" id="form-submit-btn" class="btn btn-electric w-full">
+                  <span class="btn-text">Transmit Signal</span>
+                  <svg class="btn-send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+
+                <div id="form-feedback" class="form-feedback" role="alert" aria-hidden="true"></div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- DOSSIER POPUP MODAL (For Team Details) -->
+  <div id="dossier-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-member-name">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-close" aria-label="Close dossier">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-content" id="modal-content">
+        <!-- Dynamically injected via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg viewBox="0 0 32 32" class="f-bolt">
+              <polygon points="18,2 6,18 15,18 14,30 26,13 17,13" fill="url(#logo-grad)"/>
+            </svg>
+            <span class="f-name">STORMBREAKERS</span>
+          </div>
+          <p class="footer-motto-quote">&ldquo;Break Limits &mdash; Create Legends&rdquo;</p>
+          <p class="footer-brief">
+            An elite vanguard dedicated to high-impact creation, fearless technology, and uncompromising camaraderie.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="f-col-title">NAVIGATION</h5>
+          <ul class="f-links">
+            <li><a href="#hero">Launch Pad</a></li>
+            <li><a href="#about">Identity</a></li>
+            <li><a href="#pillars">Core Pillars</a></li>
+            <li><a href="#squad">Squad Roster</a></li>
+            <li><a href="#arsenal">Tactical Arsenal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="f-col-title">PILLARS</h5>
+          <ul class="f-links">
+            <li><span class="bullet-dot">&#9889;</span> Teamwork</li>
+            <li><span class="bullet-dot">&#9889;</span> Creativity</li>
+            <li><span class="bullet-dot">&#9889;</span> Innovation</li>
+            <li><span class="bullet-dot">&#9889;</span> Determination</li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="f-col-title">HEADQUARTERS</h5>
+          <p class="f-status-text">
+            <span class="online-indicator"></span> Transmissions Encrypted<br>
+            All systems nominal.
+          </p>
+          <a href="#contact" class="btn btn-outline-glow btn-sm">Transmit Signal</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2026 STORMBREAKERS. All rights reserved. Break Limits &bull; Create Legends.</p>
+        <div class="footer-bottom-actions">
+          <button id="back-to-top" class="back-to-top-btn" aria-label="Return to top of page">
+            <span>TOP</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
